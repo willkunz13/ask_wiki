@@ -1,0 +1,11 @@
+pip
+packaging
+transformers
+flask
+waitress
+PyYAML
+requests
+pytest
+coverage
+
+[dev]
