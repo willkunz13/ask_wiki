@@ -23,6 +23,8 @@ jobs:
     - name: Check if all notebooks are cleaned
       run: |
         git status
+        git add .
+        git commit -m 'cicd auto-commit'
         echo "Check we are starting with clean git checkout"
         if [ -n "$(git status -uno -s)" ]; then echo "git status is not clean"; false; fi
         echo "Trying to strip out notebooks"
