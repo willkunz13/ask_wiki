@@ -23,6 +23,8 @@ jobs:
     - name: Check if all notebooks are cleaned
       run: |
         git status
+        git config user.name 'Auto'
+        git config user.email '<>'
         git add .
         git commit -m 'cicd auto-commit'
         echo "Check we are starting with clean git checkout"
