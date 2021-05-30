@@ -1,15 +1,21 @@
 import os
-
+from unittest.mock import patch
 import pytest
 from flaskr import create_app
+from ask_wiki.models import roberta
+import pdb
 
 
-@pytest.fixture
+@pytest.fixture(autouse=True)
 def app():
+    def __init__(self):
+        self.nlp = lambda input: [{'score':1,'answer':'Test'}]
+        pass
 
-    app = create_app()
-    app.config['TESTING'] = True
-    app.config['DEBUG'] = True
+    with patch.object(roberta.Answerer, '__init__', __init__):
+        app = create_app()
+        app.config['TESTING'] = True
+        app.config['DEBUG'] = True
     yield app
 
 @pytest.fixture
