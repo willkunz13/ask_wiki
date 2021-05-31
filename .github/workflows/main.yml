@@ -35,7 +35,9 @@ jobs:
         git status -s # display the status to see which nbs need cleaning up
         if [ -n "$(git status -uno -s)" ]; then echo -e "!!! Detected unstripped out notebooks\n!!!Remember to run nbdev_install_git_hooks"; false; fi
     - name: Create config file
-      run: 'echo "$SSH_KEY" >> instance/config.py'
+      run: |
+        mkdir instance
+        'echo "$SSH_KEY" >> instance/config.py'
       shell: bash
       env:
         SSH_KEY: ${{secrets.API_KEY}}
