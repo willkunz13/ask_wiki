@@ -37,10 +37,10 @@ jobs:
     - name: Create config file
       run: |
         mkdir instance && touch instance/config.py
-        'echo "$SSH_KEY" >> instance/config.py'
+        echo API_KEY:$API_KEY >> instance/config.py
       shell: bash
       env:
-        SSH_KEY: ${{secrets.API_KEY}}
+        API_KEY: ${{secrets.API_KEY}}
     - name: Check if there is no diff library/notebooks
       run: |
         if [ -n "$(nbdev_diff_nbs)" ]; then echo -e "!!! Detected difference between the notebooks and the library"; false; fi
