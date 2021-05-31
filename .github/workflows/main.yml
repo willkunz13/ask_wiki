@@ -36,8 +36,8 @@ jobs:
         if [ -n "$(git status -uno -s)" ]; then echo -e "!!! Detected unstripped out notebooks\n!!!Remember to run nbdev_install_git_hooks"; false; fi
     - name: Create config file
       run: |
-        mkdir instance && touch instance/config.py
-        echo API_KEY:"{$API_KEY}" >> instance/config.py
+        mkdir instance 
+        echo API_KEY='"'$API_KEY'"' >> instance/config.py
       shell: bash
       env:
         API_KEY: ${{secrets.API_KEY}}
