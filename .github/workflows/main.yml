@@ -36,8 +36,8 @@ jobs:
         if [ -n "$(git status -uno -s)" ]; then echo -e "!!! Detected unstripped out notebooks\n!!!Remember to run nbdev_install_git_hooks"; false; fi
     - name: Create config file
       run: |
-        echo ${{secrets.API_KEY}} >> config.py
-        echo ${{secrets.SEARCH_ENGINE_ID}} >> config.py
+        echo ${{secrets.API_KEY}} >> instance/config.py
+        echo ${{secrets.SEARCH_ENGINE_ID}} >> instance/config.py
     - name: Check if there is no diff library/notebooks
       run: |
         if [ -n "$(nbdev_diff_nbs)" ]; then echo -e "!!! Detected difference between the notebooks and the library"; false; fi
