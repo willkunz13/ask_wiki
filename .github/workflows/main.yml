@@ -37,8 +37,11 @@ jobs:
     - name: Create config file
       run: |
         mkdir instance
-        echo ${{secrets.API_KEY}} >> instance/config.py
-        echo ${{secrets.SEARCH_ENGINE_ID}} >> instance/config.py
+          echo $DEV_ENV_FILE >> instance/config.py
+          cat instance/config.py
+      shell: bash
+      env:
+        DEV_ENV_FILE : ${{secrets.API_KEY}}
     - name: Check if there is no diff library/notebooks
       run: |
         if [ -n "$(nbdev_diff_nbs)" ]; then echo -e "!!! Detected difference between the notebooks and the library"; false; fi
