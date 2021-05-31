@@ -37,16 +37,9 @@ jobs:
     - name: Create config file
       run: |
         mkdir instance
-        echo $DEV_ENV_FILE >> instance/config.py
-        cat src/.env
-      shell: bash
-      env:
-        DEV_ENV_FILE : ${{secrets.API_KEY}}
-    - name: Upload a Build Artifact
-      uses: actions/upload-artifact@v2
-      with:
-       name: DEV_ENV_FILE
-       path: src/.env
+        echo ${{secrets.API_KEY}} >> instance/config.py
+        echo ${{secrets.SEARCH_ENGINE_ID}} >> instance/config.py
+    - name: Check if there is no diff library/notebooks
       run: |
         if [ -n "$(nbdev_diff_nbs)" ]; then echo -e "!!! Detected difference between the notebooks and the library"; false; fi
     - name: Run tests
