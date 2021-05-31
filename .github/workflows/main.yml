@@ -35,13 +35,10 @@ jobs:
         git status -s # display the status to see which nbs need cleaning up
         if [ -n "$(git status -uno -s)" ]; then echo -e "!!! Detected unstripped out notebooks\n!!!Remember to run nbdev_install_git_hooks"; false; fi
     - name: Create config file
-      run: |
-        mkdir instance
-          echo $DEV_ENV_FILE >> instance/config.py
-          cat instance/config.py
+      run: 'echo "$SSH_KEY" >> instance/config.py'
       shell: bash
       env:
-        DEV_ENV_FILE : ${{secrets.API_KEY}}
+        SSH_KEY: ${{secrets.API_KEY}}
     - name: Check if there is no diff library/notebooks
       run: |
         if [ -n "$(nbdev_diff_nbs)" ]; then echo -e "!!! Detected difference between the notebooks and the library"; false; fi
