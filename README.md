@@ -38,18 +38,21 @@ waitress-serve --call "flaskr:create_app"
 
 ## Usage
 
-```python
-import foobar
+The microservice can be interacted with by posting questions to the '/search' endpoint.
 
-foobar.pluralize('word') # returns 'words'
-foobar.pluralize('goose') # returns 'geese'
-foobar.singularize('phenomena') # returns 'phenomenon'
+To post the questions use the python requests package.  If you are unfamiliar you can download it with:
+
+```bash
+pip install requests
 ```
 
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+A sample script to post a question to the microservice:
 
-Please make sure to update tests as appropriate.
+```python
+import requests
 
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
+url = 'http://localhost:8080/search'
+query = 'Who was the English King in 1530?'
+
+response = requests.post(url, data=query)
+```
