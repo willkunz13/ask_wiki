@@ -3,7 +3,6 @@ from unittest.mock import patch
 import pytest
 from flaskr import create_app
 from ask_wiki.models import roberta
-import pdb
 
 
 @pytest.fixture(autouse=True)

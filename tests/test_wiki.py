@@ -1,7 +1,6 @@
 import pytest
 from unittest.mock import patch
 from ask_wiki.models import roberta
-import pdb
 
 def test_wiki_call(client):
     query = "What is Wosskow?"
